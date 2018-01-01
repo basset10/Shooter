@@ -1,6 +1,8 @@
 package com.basset.shooter;
 
 import static com.osreboot.ridhvl.painter.painter2d.HvlPainter2D.hvlDrawQuadc;
+import static com.osreboot.ridhvl.painter.painter2d.HvlPainter2D.hvlResetRotation;
+import static com.osreboot.ridhvl.painter.painter2d.HvlPainter2D.hvlRotate;
 
 import java.util.ArrayList;
 
@@ -9,6 +11,7 @@ import org.lwjgl.opengl.Display;
 import org.newdawn.slick.Color;
 
 import com.osreboot.ridhvl.HvlCoord2D;
+import com.osreboot.ridhvl.HvlMath;
 import com.osreboot.ridhvl.action.HvlAction1;
 import com.osreboot.ridhvl.input.HvlInput;
 import com.osreboot.ridhvl.painter.HvlCursor;
@@ -16,7 +19,7 @@ import com.osreboot.ridhvl.painter.HvlCursor;
 public class Screens {
 
 	public static final int SCREEN_MAIN = 0, SCREEN_GAME = 1, SCREEN_CREDITS = 2;
-	public static final float BUTTON_WIDTH = 384, BUTTON_HEIGHT = 64;
+	public static final float BUTTON_WIDTH = 384f, BUTTON_HEIGHT = 64f, STATIC_HEIGHT = 2048f;
 
 	public static int currentScreen = SCREEN_MAIN;
 	public static HvlInput mouseClick;
@@ -66,7 +69,12 @@ public class Screens {
 		releaseFrame = false;
 	}
 
+	/**
+	 * Update the main screen
+	 */
 	private static void updateMain(float delta){
+		drawStatic(delta);
+		Main.font.drawWordc("R3KT", Display.getWidth()/2, Display.getHeight()/4, new Color(0f, 0f, 0.5f));
 		int hover = updateButtons(buttonsMain, buttonTextMain);
 		if(hover != -1){
 			if(releaseFrame){
@@ -79,7 +87,14 @@ public class Screens {
 		}
 	}
 
+	/**
+	 * Update the credits screen
+	 */
 	private static void updateCredits(float delta){
+		Main.font.drawWordc("CREDITS", Display.getWidth()/2, Display.getHeight()/4, new Color(0f, 0f, 0.5f), 0.5f);
+		Main.font.drawWordc("os_reboot: 99.99 percent of the code", Display.getWidth()/2, Display.getHeight()/8*3, new Color(0f, 0f, 0.5f), 0.25f);
+		Main.font.drawWordc("basset10: 0.01 percent of the code", Display.getWidth()/2, Display.getHeight()/8*4, new Color(0f, 0f, 0.5f), 0.25f);
+		drawStatic(delta);
 		int hover = updateButtons(buttonsCredits, buttonTextCredits);
 		if(hover != -1){
 			if(releaseFrame){
@@ -111,6 +126,17 @@ public class Screens {
 			textIndex++;
 		}
 		return hoverIndex;
+	}
+	
+	public static void drawStatic(float delta){
+		hvlRotate(Display.getWidth()/2, Display.getHeight()/2, 15);
+		int count = HvlMath.randomIntBetween(0, 8);
+		for(int i = 0; i < count; i++){
+			float value = (float)Math.pow(Math.random(), 5.0);
+			hvlDrawQuadc(HvlMath.randomFloatBetween((Display.getWidth()/2) - (STATIC_HEIGHT/2), (Display.getWidth()/2) + (STATIC_HEIGHT/2)), Display.getHeight()/2, 
+					HvlMath.randomFloatBetween(1f, 16f), STATIC_HEIGHT, new Color(0f, 0f, value));
+		}
+		hvlResetRotation();
 	}
 
 }
