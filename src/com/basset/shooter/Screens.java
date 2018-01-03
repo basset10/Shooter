@@ -126,8 +126,8 @@ public class Screens {
 	private static void updateCredits(float delta){
 		drawStatic(delta);
 		Main.font.drawWordc("CR3DITS", Display.getWidth()/2, Display.getHeight()/4, new Color(0f, 0f, 0.5f), 0.5f);
-		Main.font.drawWordc("os_reboot: 99.99 percent of the code", Display.getWidth()/2, Display.getHeight()/8*3, new Color(0f, 0f, 0.5f), 0.25f);
-		Main.font.drawWordc("basset10: 0.01 percent of the code", Display.getWidth()/2, Display.getHeight()/8*4, new Color(0f, 0f, 0.5f), 0.25f);
+		Main.font.drawWordc("os_reboot: 75.7 percent of the code", Display.getWidth()/2, Display.getHeight()/8*3, new Color(0f, 0f, 0.5f), 0.25f);
+		Main.font.drawWordc("basset10: 24.3 percent of the code", Display.getWidth()/2, Display.getHeight()/8*4, new Color(0f, 0f, 0.5f), 0.25f);
 		int hover = updateButtons(buttonsCredits, buttonTextCredits);
 		if(hover != -1){
 			if(releaseFrame){
