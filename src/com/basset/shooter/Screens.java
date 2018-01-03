@@ -50,6 +50,8 @@ public class Screens {
 		buttonTextMain.add("play");
 		buttonsMain.add(new HvlCoord2D(Display.getWidth()/2, Display.getHeight()/8*5));
 		buttonTextMain.add("credits");
+		buttonsMain.add(new HvlCoord2D(Display.getWidth()/2, Display.getHeight()/8*6));
+		buttonTextMain.add("quit");
 		
 		buttonsCredits = new ArrayList<>();
 		buttonTextCredits = new ArrayList<>();
@@ -82,6 +84,8 @@ public class Screens {
 					currentScreen = SCREEN_GAME;
 				}else if(hover == 1){//if the 1 button is pressed
 					currentScreen = SCREEN_CREDITS;
+				}else if(hover == 2){//if the 2 button is pressed
+					System.exit(0);
 				}
 			}
 		}
@@ -91,7 +95,7 @@ public class Screens {
 	 * Update the credits screen
 	 */
 	private static void updateCredits(float delta){
-		Main.font.drawWordc("CREDITS", Display.getWidth()/2, Display.getHeight()/4, new Color(0f, 0f, 0.5f), 0.5f);
+		Main.font.drawWordc("CR3DITS", Display.getWidth()/2, Display.getHeight()/4, new Color(0f, 0f, 0.5f), 0.5f);
 		Main.font.drawWordc("os_reboot: 99.99 percent of the code", Display.getWidth()/2, Display.getHeight()/8*3, new Color(0f, 0f, 0.5f), 0.25f);
 		Main.font.drawWordc("basset10: 0.01 percent of the code", Display.getWidth()/2, Display.getHeight()/8*4, new Color(0f, 0f, 0.5f), 0.25f);
 		drawStatic(delta);
