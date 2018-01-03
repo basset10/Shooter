@@ -80,6 +80,8 @@ public class Screens {
 		buttonsPause.add(new HvlCoord2D(Display.getWidth()/2, Display.getHeight()/2));
 		buttonTextPause.add("resume");
 		buttonsPause.add(new HvlCoord2D(Display.getWidth()/2, Display.getHeight()/8*5));
+		buttonTextPause.add("restart");
+		buttonsPause.add(new HvlCoord2D(Display.getWidth()/2, Display.getHeight()/8*6));
 		buttonTextPause.add("quit");
 
 	}
@@ -108,6 +110,7 @@ public class Screens {
 			if(releaseFrame){
 				if(hover == 0){//if the 0 button is pressed
 					currentScreen = SCREEN_GAME;
+					Game.restart();
 				}else if(hover == 1){//if the 1 button is pressed
 					currentScreen = SCREEN_CREDITS;
 				}else if(hover == 2){//if the 2 button is pressed
@@ -147,6 +150,9 @@ public class Screens {
 				if(hover == 0){//if the 0 button is pressed
 					currentScreen = SCREEN_GAME;
 				}else if(hover == 1){//if the 1 button is pressed
+					currentScreen = SCREEN_GAME;
+					Game.restart();
+				}else if(hover == 2){//if the 1 button is pressed
 					currentScreen = SCREEN_MAIN;
 				}
 			}
